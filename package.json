@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "react-bootstrap-icons": "^1.10.2",
+    "react-hook-form": "^7.40.0",
+    "reactflow": "^11.3.2",
+    "victory": "^36.6.8",
+    "yup": "^0.32.11"
+  }
+}

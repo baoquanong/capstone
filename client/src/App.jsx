@@ -1,21 +1,33 @@
-import React from 'react'
+import React from 'react';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+//import * as Icon from 'react-bootstrap-icons';
+import HomePage from './Pages/HomePage';
+import SignupPage from './Pages/SignupPage';
+import LoginPage from './Pages/LoginPage';
+import Dashboard from './Pages/Dashboard';
+import AccountsPage from './Pages/AccountsPage';
+import TransactionPage from './Pages/TransactionPage';
+import Navbar from './Components/Navbar';
+import FlowPage from './Pages/FlowPage';
+
+
 
 function App() {
   return (
     <div>
-      Appefhfshehefhs
-      <br/>
-      <button type="button" class="btn btn-primary">Primary</button>
-      <button type="button" class="btn btn-secondary">Secondary</button>
-      <button type="button" class="btn btn-success">Success</button>
-      <button type="button" class="btn btn-danger">Danger</button>
-      <button type="button" class="btn btn-warning">Warning</button>
-      <button type="button" class="btn btn-info">Info</button>
-      <button type="button" class="btn btn-light">Light</button>
-      <button type="button" class="btn btn-dark">Dark</button>
-      <button type="button" class="btn btn-link">Link</button>
-
+      <BrowserRouter>
+      <Navbar/>
+        <Routes>
+          <Route path="/" element={<HomePage/>}/>
+          <Route path="/login" element={<LoginPage/>}/>
+          <Route path="/signup" element={<SignupPage/>}/>
+          <Route path="/flow" element={<FlowPage/>}/>
+          <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/accounts" element={<AccountsPage/>}/>
+          <Route path="/transactions" element={<TransactionPage/>}/>
+        </Routes>  
+      </BrowserRouter>
     </div>
   )
 }
