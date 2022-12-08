@@ -7,11 +7,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model untitled_table {
-  id         Int      @id @default(autoincrement())
-  created_at DateTime @default(now()) @db.Timestamp(6)
-  /// This field was commented out because of an invalid name. Please provide a valid one that matches [a-zA-Z][a-zA-Z0-9_]*
-  // 123 String? @map("123") @db.VarChar(255)
-  /// This field was commented out because of an invalid name. Please provide a valid one that matches [a-zA-Z][a-zA-Z0-9_]*
-  // 456 String? @map("456") @db.VarChar(255)
+model User {
+  id       String @id @db.Uuid
+  username String @db.VarChar(255)
+  password String @db.VarChar(255)
+  email    String @db.VarChar(255)
+}
+
+model Account {
+  id             String @id @db.Uuid
+  accountName    String @db.VarChar(255)
+  description    String @db.VarChar(255)
+  accountBalance Float  @default(0.00)
+  userId         String @db.Uuid
+  xPosition      BigInt @default(0)
+  yPosition      BigInt @default(0)
+  source         BigInt @default(0)
+  target         BigInt @default(0)
+}
+
+model Expense {
+  id          String @id @db.Uuid
+  expenseName String @db.VarChar(255)
+  description String @db.VarChar(255)
+  amount      Float  @default(0.00)
+  category    String @db.VarChar(255)
+  userId      String @db.Uuid
+  accountId   String @db.Uuid
 }

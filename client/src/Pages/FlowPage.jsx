@@ -24,7 +24,7 @@ function FlowPage() {
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 
   return (
-    <div style={{width:"max-width", height:"500px"}}>
+    <div className="flow">
     Flow
     <ReactFlow
       nodes={nodes}
@@ -37,6 +37,7 @@ function FlowPage() {
       <Controls />
       <Background />
     </ReactFlow>
+
     </div>
   );
 }
