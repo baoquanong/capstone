@@ -2,12 +2,12 @@ import React from 'react'
 
 function LoginPage() {
   return (
-    <div>
-    <label>Username
-     <input type="text" name="name"/>
+    <div className='container-fluid  ' >
+      <br/>
+     <label className="d-flex justify-content-center ">Username
+     <input type="text" name="name" />
      </label>
-     <br/>
-     <label>Password
+     <label className="d-flex justify-content-center">Password
      <input type="password" name="password"/>
      </label>
 

@@ -7,58 +7,35 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user {
+model User {
   id       String    @id @default(uuid())
-  username String    @unique @db.VarChar(255)
-  password String    @db.VarChar(255)
-  email    String    @unique @db.VarChar(255)
-  accounts account[]
-  expense  expense[]
+  username String    @unique
+  password String
+  email    String    @unique
+  accounts Account[]
+  Expense  Expense[]
 }
 
-model account {
-  id             String @id @default(uuid())
-  accountName    String @db.VarChar(255)
-  description    String @db.VarChar(255)
-  accountBalance Float  @default(0.00)
-  user           user   @relation(fields: [userId], references: [id])
-  userId         String
-  xPosition      BigInt @default(0)
-  yPosition      BigInt @default(0)
-
-  expense expense[]
-
-  sourceAcctLinks acctLinks[] @relation("sourceAcctLinks")
-  targetAcctLinks acctLinks[] @relation("targetAcctLinks")
-  acctLinks       acctLinks[]
-}
-
-model acctLinks {
-  id           String  @id @default(uuid())
-  sourceAcct   account @relation(fields: [sourceAcctId], references: [id])
-  sourceAcctId String
-  targetAcct   account @relation(fields: [targetAcctId], references: [id])
-  targetAcctId String
-
-  account   account?  @relation(fields: [accountId], references: [id])
-  accountId String?
-  account   account?  @relation(fields: [accountId], references: [id])
-  accountId String?
-  expense   expense[]
-}
-
-model expense {
-  id          String     @id @default(uuid())
-  expenseName String     @db.VarChar(255)
-  description String     @db.VarChar(255)
-  amount      Float      @default(0.00)
-  category    Category   @default(None)
-  user        user       @relation(fields: [userId], references: [id])
+model Account {
+  id          String    @id @default(uuid())
+  name        String
+  description String
+  balance     Float     @default(0.00)
+  user        User      @relation(fields: [userId], references: [id])
   userId      String
-  account     account    @relation(fields: [accountId], references: [id])
+  Expense     Expense[]
+}
+
+model Expense {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  amount      Float    @default(0.00)
+  category    Category @default(None)
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  account     Account  @relation(fields: [accountId], references: [id])
   accountId   String
-  acctLinks   acctLinks? @relation(fields: [acctLinksId], references: [id])
-  acctLinksId String?
 }
 
 enum Category {
