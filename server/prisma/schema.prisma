@@ -7,31 +7,74 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id       String @id @db.Uuid
-  username String @db.VarChar(255)
-  password String @db.VarChar(255)
-  email    String @db.VarChar(255)
+model user {
+  id       String    @id @default(uuid())
+  username String    @unique @db.VarChar(255)
+  password String    @db.VarChar(255)
+  email    String    @unique @db.VarChar(255)
+  accounts account[]
+  expense  expense[]
 }
 
-model Account {
-  id             String @id @db.Uuid
+model account {
+  id             String @id @default(uuid())
   accountName    String @db.VarChar(255)
   description    String @db.VarChar(255)
   accountBalance Float  @default(0.00)
-  userId         String @db.Uuid
+  user           user   @relation(fields: [userId], references: [id])
+  userId         String
   xPosition      BigInt @default(0)
   yPosition      BigInt @default(0)
-  source         BigInt @default(0)
-  target         BigInt @default(0)
+
+  expense expense[]
+
+  sourceAcctLinks acctLinks[] @relation("sourceAcctLinks")
+  targetAcctLinks acctLinks[] @relation("targetAcctLinks")
+  acctLinks       acctLinks[]
 }
 
-model Expense {
-  id          String @id @db.Uuid
-  expenseName String @db.VarChar(255)
-  description String @db.VarChar(255)
-  amount      Float  @default(0.00)
-  category    String @db.VarChar(255)
-  userId      String @db.Uuid
-  accountId   String @db.Uuid
+model acctLinks {
+  id           String  @id @default(uuid())
+  sourceAcct   account @relation(fields: [sourceAcctId], references: [id])
+  sourceAcctId String
+  targetAcct   account @relation(fields: [targetAcctId], references: [id])
+  targetAcctId String
+
+  account   account?  @relation(fields: [accountId], references: [id])
+  accountId String?
+  account   account?  @relation(fields: [accountId], references: [id])
+  accountId String?
+  expense   expense[]
+}
+
+model expense {
+  id          String     @id @default(uuid())
+  expenseName String     @db.VarChar(255)
+  description String     @db.VarChar(255)
+  amount      Float      @default(0.00)
+  category    Category   @default(None)
+  user        user       @relation(fields: [userId], references: [id])
+  userId      String
+  account     account    @relation(fields: [accountId], references: [id])
+  accountId   String
+  acctLinks   acctLinks? @relation(fields: [acctLinksId], references: [id])
+  acctLinksId String?
+}
+
+enum Category {
+  None
+  Housing
+  Transport
+  Food
+  Utilities
+  Healthcare
+  Insurance
+  Essentials
+  Personal
+  Debt
+  Savings
+  Investments
+  Education
+  Gifts
+  Entertainment
 }
