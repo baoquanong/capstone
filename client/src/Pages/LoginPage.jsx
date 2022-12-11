@@ -1,18 +1,73 @@
-import React from 'react'
+import React from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
-  return (
-    <div className='container-fluid  ' >
-      <br/>
-     <label className="d-flex justify-content-center ">Username
-     <input type="text" name="name" />
-     </label>
-     <label className="d-flex justify-content-center">Password
-     <input type="password" name="password"/>
-     </label>
+  const navigate = useNavigate();
 
+  const { register, handleSubmit } = useForm();
+  const [error, setError] = useState("");
+
+  const handleLogin = async (data) => {
+    const login = {
+      username: data.username,
+      password: data.password,
+    };
+    console.log(data);
+
+    try {
+      const response = await fetch("/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(login),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("successfully logged in", data);
+        //        localStorage.setItem("currUser", JSON.stringify(data.user));
+        //        localStorage.setItem("token", JSON.stringify(data.token));
+        navigate("/accounts");
+      } else {
+        //console.log("error:", data.error);
+        setError(data.error);
+      }
+    } catch (error) {
+      console.log("error:", "handlelogin error");
+    }
+  };
+
+  return (
+    <div className="container-fluid d-flex flex-column min-vh-100 align-items-center justify-content-center">
+      <form
+        className="d-flex flex-column align-items-end"
+        autoComplete="off"
+        onSubmit={handleSubmit(handleLogin)}
+      >
+        <label className=" mb-3 d-flex gap-2 ">
+          Username
+          <input type="text" name="name" required {...register("username")} />
+        </label>
+        <label className=" mb-3 d-flex gap-2 ">
+          Password
+          <input
+            type="password"
+            name="password"
+            required
+            {...register("password")}
+          />
+        </label>
+        <div className="mb-3 d-flex gap-2 align-items-baseline">
+          {!error ? <></> : <p className="text-danger">{error}</p>}
+          <button className="">Login</button>
+        </div>
+      </form>
     </div>
-  )
+  );
 }
 
-export default LoginPage
+export default LoginPage;

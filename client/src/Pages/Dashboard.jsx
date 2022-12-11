@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import * as V from 'victory';
+
+
 
 const data = [
     {quarter: 1, earnings: 13000},

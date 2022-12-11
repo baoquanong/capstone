@@ -7,7 +7,7 @@ function Navbar() {
     <div>
       <nav className="navbar navbar-dark navbar-expand-md bg-dark ">
         <div className="container-fluid">
-          <NavLink className="navbar-brand" to="/">FundsFlow</NavLink>
+          <NavLink className="navbar-brand" to="/dashboard">FundsFlow</NavLink>
           <NavLink to="/login">Login</NavLink>
           <NavLink to="/signup">Sign Up</NavLink>
           <NavLink to="/flow">Flow</NavLink>
