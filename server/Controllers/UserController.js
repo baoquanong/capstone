@@ -1,7 +1,9 @@
+require("dotenv").config();
 const { PrismaClient } = require("@prisma/client");
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const saltRounds = 10;
 
@@ -42,13 +44,17 @@ router.post("/login", async (req, res) => {
     } else {
       const loginPass = bcrypt.compareSync(req.body.password, user.password);
       if (loginPass) {
-        res.status(200).json(user);
+        const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+        res.status(200).json({ 
+            user: user,
+            token: token });
+
       } else {
         res.status(400).json({ error: "Incorrect password!" });
       }
     }
   } catch (error) {
-    res.status(500).json({ error: "server post error" });
+    res.status(500).json({ error: "Server Error" });
   }
 });
 

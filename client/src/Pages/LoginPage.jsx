@@ -29,8 +29,8 @@ function LoginPage() {
 
       if (response.ok) {
         console.log("successfully logged in", data);
-        //        localStorage.setItem("currUser", JSON.stringify(data.user));
-        //        localStorage.setItem("token", JSON.stringify(data.token));
+        localStorage.setItem("currUser", JSON.stringify(data.user));
+        localStorage.setItem("token", JSON.stringify(data.token));
         navigate("/accounts");
       } else {
         //console.log("error:", data.error);

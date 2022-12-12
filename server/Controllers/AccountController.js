@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const express = require("express");
+const authorization = require("../Middleware/authorization");
 const router = express.Router();
 
 const prisma = new PrismaClient();
@@ -17,5 +18,21 @@ router.get("/seed", async (req, res) => {
     res.status(500).json({ error: error });
   }
 });
+
+router.get("/", authorization, async (req, res) => {
+  try {
+    const account = await prisma.account.findMany({
+      where: {
+        userId : req.user
+      }
+    })
+    res.status(200).json(account);
+
+  } catch (error) {
+      res.status(500).json({ error: "Server Error" });
+  }
+})
+
+
 
 module.exports = router;
