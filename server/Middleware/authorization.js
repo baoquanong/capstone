@@ -7,7 +7,7 @@ const authorization = async (req, res, next) => {
         const token = req.header("token");
 
         if (!token) {
-            return res.status(403).json("Not Authorized"); 
+            return res.status(403).json("Not Authorized1"); 
         }
 
         const verify = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
@@ -16,7 +16,7 @@ const authorization = async (req, res, next) => {
 
     } catch (error) {
         console.log (error)
-        return res.status(403).json("Not Authorized");   
+        return res.status(403).json("Not Authorized2");   
     }
 
 }

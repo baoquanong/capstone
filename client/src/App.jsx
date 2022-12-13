@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 //import * as Icon from 'react-bootstrap-icons';
@@ -7,26 +7,36 @@ import SignupPage from "./Pages/SignupPage";
 import LoginPage from "./Pages/LoginPage";
 import Dashboard from "./Pages/Dashboard";
 import AccountsPage from "./Pages/AccountsPage";
-import TransactionPage from "./Pages/TransactionPage";
+import ExpensesPage from "./Pages/ExpensesPage";
 import Navbar from "./Components/Navbar";
 import FlowPage from "./Pages/FlowPage";
+import AddAccountPage from "./Pages/AddAccountPage";
+
+export const DataContext = createContext();
 
 function App() {
+  const [globalState, setGlobalState] = useState({
+    allAccounts: [], // array containing all accounts
+  });
+
   return (
     <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Navbar />}>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-            <Route path="/flow" element={<FlowPage />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/accounts" element={<AccountsPage />} />
-            <Route path="/transactions" element={<TransactionPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <DataContext.Provider value={{ globalState, setGlobalState }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Navbar />}>
+              <Route path="/" element={<LoginPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignupPage />} />
+              <Route path="/flow" element={<FlowPage />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/accounts" element={<AccountsPage />} />
+              <Route path="/expenses" element={<ExpensesPage />} />
+            </Route>
+            <Route path="/addaccount" element={<AddAccountPage />} />
+          </Routes>
+        </BrowserRouter>
+      </DataContext.Provider>
     </div>
   );
 }

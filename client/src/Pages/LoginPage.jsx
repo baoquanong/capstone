@@ -63,7 +63,7 @@ function LoginPage() {
         </label>
         <div className="mb-3 d-flex gap-2 align-items-baseline">
           {!error ? <></> : <p className="text-danger">{error}</p>}
-          <button className="">Login</button>
+          <button className="btn btn-dark">Login</button>
         </div>
       </form>
     </div>
