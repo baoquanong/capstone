@@ -1,22 +1,27 @@
 import React from 'react'
 import Card from "react-bootstrap/Card";
+import { useNavigate, useParams,  } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
-function ExpenseCard() {
+function ExpenseCard({ expense }) {
+
+
+
 
   return (
     <div className="">
         <Card > 
             <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
-                Card Subtitle
-            </Card.Subtitle>
+            <Card.Title>{expense?.name}</Card.Title>
             <Card.Text>
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
+              Account Balance: S${expense?.amount}
+              <br/>
+              Description: {expense?.description}
             </Card.Text>
-            <Card.Link href="#">Card Link</Card.Link>
-            <Card.Link href="#">Another Link</Card.Link>
+            <div className="d-flex gap-2">
+            <Button variant="dark" >Edit</Button>
+            <Button variant="dark" >Delete</Button>
+            </div>
             </Card.Body>
         </Card>
     </div>
