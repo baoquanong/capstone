@@ -57,4 +57,23 @@ router.post("/add", authorization, async (req, res) => {
   }
 });
 
+router.delete("/delete/:id", authorization, async (req, res) => {
+  try {
+    const deleteAccount = await prisma.account.delete({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (!deleteAccount) {
+      res.status(400).json({ error: "Unable to find expenseId" });
+    } else {
+      res.status(200).json(deleteAccount);
+    }
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+});
+
+
 module.exports = router;

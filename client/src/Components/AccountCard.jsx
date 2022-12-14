@@ -5,13 +5,13 @@ import Accordion from "react-bootstrap/Accordion";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
 
 import { DataContext } from "../App";
-import { useNavigate, useParams,  } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function AccountCard({ account }) {
   //const { globalState, setGlobalState } = useContext(DataContext);
   const navigate = useNavigate();
-  const acctId =  account.id
-  console.log("accounttttt", acctId)
+  const acctId = account.id;
+  console.log("accounttttt", acctId);
 
   const handleViewTransactions = (id) => {
     navigate(`/expenses/${id}`);
@@ -21,8 +21,10 @@ function AccountCard({ account }) {
     return (
       <Button
         variant="dark"
-        onClick={() => {handleViewTransactions(acctId);
-        }}>
+        onClick={() => {
+          handleViewTransactions(acctId);
+        }}
+      >
         {children}
       </Button>
     );
@@ -35,7 +37,9 @@ function AccountCard({ account }) {
         className="w-80 p-1 align-items-center justify-content-center"
       >
         <Accordion.Item eventKey="0">
-          <Accordion.Header className="font-weight-bold">{account?.name}</Accordion.Header>
+          <Accordion.Header className="font-weight-bold">
+            {account?.name}
+          </Accordion.Header>
           <Accordion.Body>
             <h6>Account Balance: S${account?.balance}</h6>
             <p className="text-muted">Account Use: {account?.description}</p>
