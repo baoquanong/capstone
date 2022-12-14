@@ -57,4 +57,26 @@ router.delete("/delete/:id", authorization, async (req, res) => {
   }
 });
 
+router.put("/edit/:id", authorization, async (req, res) => {
+  try {
+    const updateExpense = await prisma.expense.update({
+      where: {
+        id: req.params.id,
+      },
+      data: req.body,
+      include: {
+        account: { include: { Expense: true } },
+      },
+    });
+
+    if (!updateExpense) {
+      res.status(400).json({ error: "Cannot update expense" });
+    } else {
+      res.status(200).json(updateExpense);
+    }
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+});
+
 module.exports = router;

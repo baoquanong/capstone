@@ -1,37 +1,43 @@
-import React from 'react'
+import React, { useContext } from "react";
 import Card from "react-bootstrap/Card";
 import { useNavigate, useParams,  } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import { DataContext } from "../App";
+
 
 function ExpenseCard({ expense }) {
 
-  // const handleDelete = async (expenseId) => {
-  //   try {
-  //     const response = await fetch(`/api/expenses/delete/${expenseId}`, {
-  //       method: "DELETE",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         token: JSON.parse(localStorage.getItem("token")),
-  //       },
-  //       body: null,
-  //     });
 
-  //     const data = await response.json();
-  //     if (response.ok) {
-  //       console.log("delete successfully");
-  //       const acctId = data.accountId
-  //       // const filtered = globalState?.allAccounts?.filter((acct)=> acct.id !== data.account.id)
-  //       // setGlobalState({...globalState, allAccounts: filtered});
-  //       navigate(`/expenses/${acctId}`);
-  //     } else {
-  //       console.log("error:", data.error);
-  //     }
-  //   } catch (error) {
-  //     console.log("client error:", "delete expense error");
-  //   }
-  // };
+  const handleDelete = async (expId) => {
+    try {
+      const response = await fetch(`/api/expenses/delete/${expId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          token: JSON.parse(localStorage.getItem("token")),
+        },
+        body: null,
+      });
 
+      const data = await response.json();
+      if (response.ok) {
+        console.log("delete successfully");
+        // const acctId = data.accountId
+        // const filterAccount = globalState?.allAccounts?.filter((acct)=> acct.id === acctId)
+        // const filteredExpenses = filterAccount.Expense.filter((exp)=> exp.id !== data.id)
+        // filterAccount.Expense = filteredExpenses;
+        // const filteredAccounts = globalState?.allAccounts?.filter((acct)=> acct.id !== acctId)
+        // const filtered = filteredAccounts.push(filterAccount)
+        // setGlobalState({...globalState, 
+        //     allAccounts: filtered});
 
+      } else {
+        console.log("error:", data.error);
+      }
+    } catch (error) {
+      console.log("client error:", "delete expense error");
+    }
+  };
 
   return (
     <div className="">
@@ -45,7 +51,7 @@ function ExpenseCard({ expense }) {
             </Card.Text>
             <div className="d-flex gap-2">
             <Button variant="dark" >Edit</Button>
-            <Button variant="dark" >Delete</Button>
+            <Button onClick={()=>handleDelete(expense?.id)} variant="dark" >Delete</Button>
             </div>
             </Card.Body>
         </Card>

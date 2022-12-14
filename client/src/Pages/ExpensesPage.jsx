@@ -1,5 +1,4 @@
-import React from 'react'
-import { useContext, use } from 'react';
+import React, { useContext } from "react";
 import ExpenseCard from '../Components/ExpenseCard'
 import { DataContext } from "../App";
 import { useNavigate, useParams } from 'react-router-dom';
@@ -7,6 +6,7 @@ import Button from "react-bootstrap/Button";
 
 function ExpensesPage() {
   const { globalState, setGlobalState } = useContext(DataContext);
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -14,8 +14,6 @@ function ExpensesPage() {
   const handleAddExpense = () => {
     navigate(`/expenses/${id}/add`)
   }
-  
-
     const filteredAccts = globalState.allAccounts.find((account) => account.id === id);  
     console.log(filteredAccts);
     const mappedExpenses = filteredAccts?.Expense?.map((expense, index) => {
