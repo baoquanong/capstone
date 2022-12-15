@@ -19,3 +19,8 @@
   justify-content: center;
   gap: 0px;
 }
+
+.chart {
+  width: max-width;
+  height: 500px;
+}
