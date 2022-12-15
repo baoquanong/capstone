@@ -45,7 +45,6 @@ router.get("/:id", authorization, async (req, res) => {
       where: {
         accountId: req.params.id,
       },
-
     });
     if (!expenses) {
       res.status(400).json({ error: "No accounts found!" });
@@ -63,7 +62,6 @@ router.get("/one/:id", authorization, async (req, res) => {
       where: {
         id: req.params.id,
       },
-
     });
     if (!oneExpense) {
       res.status(400).json({ error: "No expenses found!" });
@@ -74,7 +72,6 @@ router.get("/one/:id", authorization, async (req, res) => {
     res.status(500).json({ error: error });
   }
 });
-
 
 router.delete("/delete/:id", authorization, async (req, res) => {
   try {

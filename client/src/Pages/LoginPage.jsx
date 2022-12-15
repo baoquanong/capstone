@@ -44,8 +44,8 @@ function LoginPage() {
   return (
     <div className="home-page container-fluid d-flex flex-column min-vh-100 align-items-center justify-content-center">
       {/* <img
-        src="./images/login5.jpg"
-        className="w-100 min-vh-100 overflow-hidden "
+        src="./images/login6.jpg"
+        className="home-page"
       /> */}
       <form
         className="d-flex flex-column align-items-end"
