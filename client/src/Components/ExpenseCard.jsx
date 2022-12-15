@@ -4,7 +4,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { DataContext } from "../App";
 
+
+
+
 function ExpenseCard({ expense, handleDelete }) {
+  const navigate = useNavigate();
+
+
+  const handleEditExpense = (id) => {
+    navigate(`/expenses/${id}/edit`);
+  };
 
 
   return (
@@ -18,7 +27,7 @@ function ExpenseCard({ expense, handleDelete }) {
             Description: {expense?.description}
           </Card.Text>
           <div className="d-flex gap-2">
-            <Button variant="dark">Edit</Button>
+            <Button onClick={() => handleEditExpense(expense?.id)} variant="dark">Edit</Button>
             <Button onClick={() => handleDelete(expense?.id)} variant="dark">
               Delete
             </Button>

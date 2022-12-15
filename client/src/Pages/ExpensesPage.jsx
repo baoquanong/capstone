@@ -85,7 +85,8 @@ function ExpensesPage() {
 
   return (
     <div className="container p-1 col- ">
-      {mappedExpenses}
+      {expenses.length === 0 ? <p>there is no expenses</p> : mappedExpenses}
+
       <div className="w-100 p-3 d-flex align-items-center justify-content-center">
         <Button onClick={handleAddExpense} variant="dark">
           Add

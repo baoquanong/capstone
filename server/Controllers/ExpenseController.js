@@ -57,6 +57,24 @@ router.get("/:id", authorization, async (req, res) => {
   }
 });
 
+router.get("/one/:id", authorization, async (req, res) => {
+  try {
+    const oneExpense = await prisma.expense.findUnique({
+      where: {
+        id: req.params.id,
+      },
+
+    });
+    if (!oneExpense) {
+      res.status(400).json({ error: "No expenses found!" });
+    } else {
+      res.status(200).json(oneExpense);
+    }
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+});
+
 
 router.delete("/delete/:id", authorization, async (req, res) => {
   try {

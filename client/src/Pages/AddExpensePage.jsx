@@ -54,7 +54,9 @@ function AddExpensePage() {
 
   return (
     <div className="container-fluid d-flex flex-column min-vh-100 align-items-center justify-content-center">
-      AddExpensePage
+      <h5 className="pb-3">
+      Add Transaction
+      </h5>
       <form
         className="d-flex flex-column align-items-end"
         autoComplete="off"

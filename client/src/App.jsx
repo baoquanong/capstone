@@ -12,14 +12,14 @@ import Navbar from "./Components/Navbar";
 import FlowPage from "./Pages/FlowPage";
 import AddAccountPage from "./Pages/AddAccountPage";
 import AddExpensePage from "./Pages/AddExpensePage";
+import EditExpensePage from "./Pages/EditExpensePage";
 
 export const DataContext = createContext();
 
 function App() {
   const [globalState, setGlobalState] = useState({
     allAccounts: [], // array containing all accounts
-    viewedAccount: {}, 
-    viewedAccountExpenses: {}, 
+
 
   });
 
@@ -39,6 +39,7 @@ function App() {
             </Route>
             <Route path="/addaccount" element={<AddAccountPage />} />
             <Route path="/expenses/:id/add" element={<AddExpensePage />} />
+            <Route path="/expenses/:id/edit" element={<EditExpensePage />} />
           </Routes>
         </BrowserRouter>
       </DataContext.Provider>
