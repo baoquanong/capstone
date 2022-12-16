@@ -12,7 +12,7 @@ import { DataContext } from "../App";
 // console.log ("hello", globalState.allAccounts);
 
 function ChartPie() {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const { globalState, setGlobalState } = useContext(DataContext);
   const allAccounts = globalState.allAccounts;
 
@@ -26,18 +26,13 @@ function ChartPie() {
     arr.push(obj);
   });
 
-  useEffect(() => {
-    setData(arr);
-  }, []);
+  // useEffect(() => {
+  //   setData(arr);
+  // }, []);
 
   return (
     <div className="chart">
-      <VictoryPie
-        animate={{ easing: "exp" }}
-        data={data}
-        innerRadius={100}
-        domainPadding={20}
-      >
+      <VictoryPie data={arr} innerRadius={100} domainPadding={20}>
         {/* <VictoryAxis
           // tickValues specifies both the number of ticks and where
           // they are placed on the axis
