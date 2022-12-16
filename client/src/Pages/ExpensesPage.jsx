@@ -4,7 +4,7 @@ import { DataContext } from "../App";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { useEffect } from "react";
-
+import { motion } from "framer-motion";
 
 function ExpensesPage() {
   const [expenses, setExpenses] = useState([]);
@@ -85,20 +85,27 @@ function ExpensesPage() {
   });
 
   return (
-    <div className="container p-1 col- ">
-      <br />
-      {expenses.length !== 0 ? (
-        mappedExpenses
-      ) : (
-        <p className="text-danger d-flex align-items-center justify-content-center">
-          There are no transactions record
-        </p>
-      )}
+    <div className="container-fluid d-flex w-100 h-100">
+      <img className="gif w-40 h-20" src="../images/shopping.gif" />
+      <div className="container-fluid w-50 p-2 mx-5 ">
+        <br />
+        {expenses.length !== 0 ? (
+          mappedExpenses
+        ) : (
+          <motion.p className="text-danger d-flex align-items-center justify-content-center"
+          initial={{opacity: 0}}
+          animate={{opacity: 1, scale: 1.5}}
+          transition={{duration: 1.5, type: "tween"}}
+          >
+            There are no transactions record
+          </motion.p>
+        )}
 
-      <div className="w-100 p-3 d-flex align-items-center justify-content-center">
-        <Button onClick={handleAddExpense} variant="dark">
-          Add Transaction
-        </Button>
+        <div className="w-100 p-4 d-flex align-items-center justify-content-center">
+          <Button onClick={handleAddExpense} variant="dark">
+            Add Transaction
+          </Button>
+        </div>
       </div>
     </div>
   );

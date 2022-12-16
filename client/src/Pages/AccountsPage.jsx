@@ -51,7 +51,7 @@ function AccountsPage() {
   };
 
   return (
-    <div>
+    <div className="account-page">
       {<ChartPie />}
       {mappedAccounts}
       <br />

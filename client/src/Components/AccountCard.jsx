@@ -31,10 +31,10 @@ function AccountCard({ account }) {
   }
 
   return (
-    <div>
+    <div className="container d-flex align-items-center justify-content-center">
       <Accordion
         flush
-        className="w-80 p-1 align-items-center justify-content-center"
+        className="w-50 p-1 align-items-center justify-content-between"
       >
         <Accordion.Item eventKey="0">
           <Accordion.Header className="font-weight-bold">

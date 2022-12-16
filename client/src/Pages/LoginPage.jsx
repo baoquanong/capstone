@@ -42,7 +42,7 @@ function LoginPage() {
   };
 
   return (
-    <div className="home-page container-fluid d-flex flex-column min-vh-100 align-items-center justify-content-center">
+    <div className="login-page container-fluid d-flex flex-column min-vh-100 align-items-center justify-content-center">
       {/* <img
         src="./images/login6.jpg"
         className="home-page"

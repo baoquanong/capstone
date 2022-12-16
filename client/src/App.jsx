@@ -19,8 +19,6 @@ export const DataContext = createContext();
 function App() {
   const [globalState, setGlobalState] = useState({
     allAccounts: [], // array containing all accounts
-
-
   });
 
   return (

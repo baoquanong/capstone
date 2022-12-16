@@ -18,7 +18,11 @@ function ExpenseCard({ expense, handleDelete }) {
 
 
   return (
-    <motion.div className="">
+    <motion.div className="p-2"
+      initial={{y: "-100vh"}}
+      animate={{x: 0, y: 0}}
+      transition={{delay: 0.5, duration: 1.75, type: "spring", stiffness: 150 }}
+      >
       <Card>
         <Card.Body>
           <Card.Title>{expense?.name}</Card.Title>

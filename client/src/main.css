@@ -3,7 +3,7 @@
   height: 500px;
 }
 
-.home-page {
+.login-page {
   background: url("./images/login6.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -23,4 +23,20 @@
 .chart {
   width: max-width;
   height: 500px;
+}
+
+.account-page {
+  background: url(./images/account1.png);
+  background-repeat: no-repeat;
+  background-size: 100vw;
+}
+
+.gif {
+  object-fit: none;
+}
+
+.add-page {
+  background: url(./images/addpage.jpg);
+  background-repeat: no-repeat;
+  background-size: 50vw 100vh;
 }

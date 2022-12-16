@@ -1,23 +1,34 @@
-import React, { PureComponent, useEffect, useState } from "react";
+import React, { PureComponent, useEffect, useState, useContext } from "react";
 import { VictoryPie, VictoryChart, VictoryAxis, VictoryBar } from "victory";
+import { DataContext } from "../App";
 
-const data1 = [
-  { x: "cats", y: 10 },
-  { x: "dogs", y: 50 },
-  { x: "birds", y: 40 },
-];
-const data2 = [
-  { x: "cats", y: 0 },
-  { x: "dogs", y: 0 },
-  { x: "birds", y: 100 },
-];
+// const data2 = [
+//   { x: "Main Account", y: 0 },
+//   { x: "Spending Account", y: 0 },
+//   { x: "Savings Account", y: 100 },
+// ];
+
+// const startArr = [];
+// console.log ("hello", globalState.allAccounts);
 
 function ChartPie() {
-  const [data, setData] = useState(data2);
+  const [data, setData] = useState([]);
+  const { globalState, setGlobalState } = useContext(DataContext);
+  const allAccounts = globalState.allAccounts;
+
+  const arr = [];
+
+  allAccounts.map((item) => {
+    const obj = {
+      x: item.name,
+      y: item.balance,
+    };
+    arr.push(obj);
+  });
 
   useEffect(() => {
-    setData(data1);
-  });
+    setData(arr);
+  }, []);
 
   return (
     <div className="chart">
