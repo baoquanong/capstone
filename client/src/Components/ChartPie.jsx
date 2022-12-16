@@ -12,26 +12,25 @@ function ChartPie() {
   // const [data, setData] = useState([]);
   const { globalState, setGlobalState } = useContext(DataContext);
   const allAccounts = globalState.allAccounts;
-  console.log("hello", allAccounts)
+  console.log("hello", allAccounts);
 
   const arr = [];
 
-allAccounts.map((item)=>{
-  console.log("inside", item.Expense)
-  let sum = 0
-  item.Expense.map((ele)=> {
-    console.log("ele", ele)
-    sum = sum + ele.amount
-  })
-  const balanceSum = item.balance + sum
+  allAccounts.map((item) => {
+    console.log("inside", item.Expense);
+    let sum = 0;
+    item.Expense.map((ele) => {
+      console.log("ele", ele);
+      sum = sum + ele.amount;
+    });
+    const balanceSum = item.balance + sum;
 
-  const obj = {
-    x: item.name,
-    y: balanceSum,
-  };
-  arr.push(obj);
-})
-
+    const obj = {
+      x: item.name,
+      y: balanceSum,
+    };
+    arr.push(obj);
+  });
 
   // const arr = [];
 
@@ -43,8 +42,7 @@ allAccounts.map((item)=>{
   //   arr.push(obj);
   // });
 
-  console.log("exexexex", arr)
-
+  console.log("exexexex", arr);
 
   // useEffect(() => {
   //   setData(arr);
