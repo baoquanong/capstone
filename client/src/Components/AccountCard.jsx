@@ -11,7 +11,7 @@ function AccountCard({ account }) {
   //const { globalState, setGlobalState } = useContext(DataContext);
   const navigate = useNavigate();
   const acctId = account.id;
-  console.log("accounttttt", acctId);
+  //console.log("accounttttt", acctId);
 
   const handleViewTransactions = (id) => {
     navigate(`/expenses/${id}`);
@@ -30,6 +30,17 @@ function AccountCard({ account }) {
     );
   }
 
+  //console.log("hello", account)
+  //console.log("hello", account.Expense);
+
+  let sum = 0;
+  account.Expense.map((ele) => {
+    sum = sum + ele.amount;
+    //console.log (sum)
+  });
+  //console.log("nihao", sum);
+  const balanceSum = account.balance + sum 
+
   return (
     <div className="container d-flex align-items-center justify-content-center">
       <Accordion
@@ -41,7 +52,7 @@ function AccountCard({ account }) {
             {account?.name}
           </Accordion.Header>
           <Accordion.Body>
-            <h6>Account Balance: S${account?.balance}</h6>
+            <h6>Account Balance: S${balanceSum}</h6>
             <p className="text-muted">Account Use: {account?.description}</p>
             <CustomToggle>View Transactions</CustomToggle>
           </Accordion.Body>

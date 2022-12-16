@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -43,11 +44,11 @@ function LoginPage() {
 
   return (
     <div className="login-page container-fluid d-flex flex-column min-vh-100 align-items-center justify-content-center">
-      {/* <img
-        src="./images/login6.jpg"
-        className="home-page"
-      /> */}
-      <form
+
+      <motion.form
+      initial={{y: "-100vh"}}
+      animate={{x: 0, y: 0}}
+      transition={{delay: 0.5, duration: 1.5, type: "spring", stiffness: 150 }}
         className="d-flex flex-column align-items-end"
         autoComplete="off"
         onSubmit={handleSubmit(handleLogin)}
@@ -69,7 +70,7 @@ function LoginPage() {
           {!error ? <></> : <p className="text-danger">{error}</p>}
           <button className="btn btn-dark">Login</button>
         </div>
-      </form>
+      </motion.form>
     </div>
   );
 }
