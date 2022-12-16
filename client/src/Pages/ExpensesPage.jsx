@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { useEffect } from "react";
 
+
 function ExpensesPage() {
   const [expenses, setExpenses] = useState([]);
 
@@ -85,13 +86,13 @@ function ExpensesPage() {
 
   return (
     <div className="container p-1 col- ">
-      <br/>
-      {expenses.length === 0 ? (
+      <br />
+      {expenses.length !== 0 ? (
+        mappedExpenses
+      ) : (
         <p className="text-danger d-flex align-items-center justify-content-center">
           There are no transactions record
         </p>
-      ) : (
-        mappedExpenses
       )}
 
       <div className="w-100 p-3 d-flex align-items-center justify-content-center">

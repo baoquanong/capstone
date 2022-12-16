@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { DataContext } from "../App";
+import { motion } from "framer-motion";
 
 
 
@@ -17,7 +18,7 @@ function ExpenseCard({ expense, handleDelete }) {
 
 
   return (
-    <div className="">
+    <motion.div className="">
       <Card>
         <Card.Body>
           <Card.Title>{expense?.name}</Card.Title>
@@ -34,7 +35,7 @@ function ExpenseCard({ expense, handleDelete }) {
           </div>
         </Card.Body>
       </Card>
-    </div>
+    </motion.div>
   );
 }
 

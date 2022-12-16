@@ -1,5 +1,4 @@
 import React, { PureComponent, useEffect, useState } from "react";
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
 import { VictoryPie, VictoryChart, VictoryAxis, VictoryBar } from "victory";
 
 const data1 = [
