@@ -13,6 +13,10 @@ function Navbar() {
     navigate("/accounts")
   }
 
+  const handleToFlow = () => {
+    navigate("/flow")
+  }
+
 
   return (
     <div>
@@ -24,6 +28,7 @@ function Navbar() {
           {/* <NavLink to="/flow">Flow</NavLink> */}
           {/* <NavLink to="/dashboard">Dashboard</NavLink> */}
           <div className="d-flex align-items-end">
+          <p className="nav-link text-white pt-3 mx-5" onClick={()=>handleToFlow()}>Flow</p>
           <p className="nav-link text-white pt-3" onClick={()=>handleToAccounts()}>Accounts</p>
           <p className="mx-5 text-white pt-3" onClick={()=>handleLogout()}>Logout</p>
           </div>
